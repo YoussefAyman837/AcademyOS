@@ -1,0 +1,20 @@
+{
+  "name": "academyos",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/api", "apps/web"],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm --workspace @academyos/api run dev",
+    "dev:web": "npm --workspace @academyos/web run dev",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "test:integration": "npm --workspace @academyos/api run test:integration",
+    "db:generate": "npm --workspace @academyos/api run db:generate",
+    "db:migrate": "npm --workspace @academyos/api run db:migrate",
+    "db:deploy": "npm --workspace @academyos/api run db:deploy",
+    "db:validate": "npm --workspace @academyos/api run db:validate"
+  },
+  "devDependencies": { "concurrently": "^9.1.2", "typescript": "^5.8.3" }
+}
